@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Đây là khai báo XML tiêu chuẩn, chỉ ra phiên bản XML và mã hóa -->
+
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http:// sourceforge.net/hibernate-configuration-3.0.dtd">
+<!-- Đây là khai báo kiểu tài liệu (DOCTYPE) cho tệp cấu hình XML.
+Nó chỉ định một văn bản DTD (Document Type Definition) mà tệp XML phải tuân theo -->
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <!-- Các thuộc tính connection.driver_class, connection.url, connection.username, connection.password chứa thông tin kết nối đến cơ sở dữ liệu.
+        Điều này bao gồm thông tin như driver JDBC, URL kết nối, tên đăng nhập và mật khẩu -->
+        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="connection.url">jdbc:sqlserver://localhost:1433;database=final_exam_orm_phase2;TrustServerCertificate=true;</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password">123456789</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <!-- Xác định kích thước của pool kết nối JDBC. Trong trường hợp này, pool có kích thước là 1 -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <!-- Chỉ định SQL dialect được sử dụng. Trong trường hợp này, đó là SQL Server -->
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <!-- Cấu hình Hibernate để hiển thị tất cả các câu lệnh SQL được thực thi -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <!-- Cấu hình Hibernate để tự động tạo và cập nhật schema của cơ sở dữ liệu dựa trên các entity class.
+        Trong trường hợp này, Hibernate sẽ cố gắng cập nhật schema khi cần thiết -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Xác định các lớp entity (được ánh xạ) mà Hibernate sẽ quản lý. Trong trường hợp này, có một danh sách các lớp entity,
+        bao gồm DichVu, KhachHang, LichSuChamSoc, LoaiKhachHang, và NhanVien. Điều này cho biết rằng Hibernate sẽ sử dụng các lớp
+        này để tạo và truy vấn dữ liệu trong cơ sở dữ liệu.-->
+        <mapping class="fa.training.entities.DichVu" />
+        <mapping class="fa.training.entities.KhachHang" />
+        <mapping class="fa.training.entities.LichSuChamSoc" />
+        <mapping class="fa.training.entities.LoaiKhachHang" />
+        <mapping class="fa.training.entities.NhanVien" />
+
+    </session-factory>
+</hibernate-configuration>
